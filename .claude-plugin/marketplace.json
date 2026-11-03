@@ -9,7 +9,7 @@
       "name": "jira-analiz",
       "source": "./plugins/jira-analiz",
       "description": "Jira görevlerinden Türkçe, sade ve uygulanabilir iş analizi ve alt görev planı hazırlar.",
-      "version": "1.0.0"
+      "version": "1.1.0"
     }
   ]
 }

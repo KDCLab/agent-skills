@@ -11,6 +11,21 @@ Akış beş adımdan oluşur. Adımları sırayla izle; çünkü her adım bir s
 
 Kullanıcıyla her zaman Türkçe konuş ve analizi Türkçe yaz.
 
+## Soru sorma yöntemi
+
+Bu skill boyunca kullanıcıya birçok soru sorulur: çelişkiler, eksik bilgiler, iş kararları, format seçimi, tasklandırma ve Jira'ya yazma onayı. Ortamda seçmeli soru aracı varsa bu soruları onunla sor. Claude Code'da bu araç `AskUserQuestion`. Kullanıcı ekranda seçenek işaretleyerek uzun cevap yazmadan hızla ilerler; verilen cevaplar da birbirine karışmaz.
+
+Aracı şöyle kullan:
+- **Bir çağrıda en fazla 4 soru** sor. Her soruya 2-4 seçenek koy. Daha fazla soru varsa birbiriyle ilişkili olanları aynı çağrıda topla ve birkaç tura böl.
+- **Her soruya kısa bir başlık** ver (ör. "Kapsam", "Yetki", "Format").
+- **Seçenekleri birbirini dışlayacak şekilde** yaz. Her seçeneğin açıklamasında etkisini tek cümleyle belirt. Kullanıcı her zaman "Diğer" seçip serbest metin yazabilir, o yüzden "Diğer" seçeneğini sen ekleme.
+- **Önerin varsa** o seçeneği ilk sıraya koy ve etiketin sonuna "(Önerilen)" ekle. Öneri, karar değildir; son karar kullanıcıya aittir.
+- **Birden fazla cevabın doğru olabildiği** sorularda (ör. "Hangi kullanıcı tipleri etkilenir?") çoklu seçimi aç.
+- **Format sorusunda** her formatın kısa iskeletini önizleme olarak göster, böylece kullanıcı seçmeden önce çıktının nasıl görüneceğini görür.
+- **Gerçekten açık uçlu sorularda** (ör. "Mevcut limit değeri nedir?") sabit seçenek uydurma. Bu soruları düz metinle sor ya da kaynaklardan çıkan olası değerleri seçenek yap.
+
+Seçmeli soru aracı olmayan ortamlarda soruları numaralı listeyle sor, seçenekleri harflendir (a/b/c). Böylece kullanıcı "1a, 2c" gibi kısa cevap verebilir.
+
 ---
 
 ## 1. Görevi ve ilgili kaynakları incele
@@ -27,7 +42,7 @@ Jira/Confluence için ortamda hangi araç varsa onu kullan (ör. Atlassian MCP a
 
 **Erişilemeyen kaynaklar:** Açamadığın her linki/eki not et ve kullanıcıya listele ("Şu PRD linkine erişemedim: …"). İçeriği hakkında tahmin yürütme — başlığından ya da bağlamdan ne yazdığını varsaymak, analize doğrulanmamış bilgi sokar ve sonradan fark edilmesi zordur. Kullanıcı içeriği paylaşabilir ya da o kaynak olmadan devam etmeye karar verebilir.
 
-**Çelişkiler:** Kaynaklar birbiriyle çelişiyorsa (ör. PRD "tüm kullanıcılar" diyor, yorumda "sadece premium" denmiş; prototip ile açıklama farklı akış gösteriyor) hangisinin geçerli olduğuna kendin karar verme. Çelişkiyi kaynaklarıyla birlikte kısaca göster ve kullanıcıya sor.
+**Çelişkiler:** Kaynaklar birbiriyle çelişiyorsa (ör. PRD "tüm kullanıcılar" diyor, yorumda "sadece premium" denmiş; prototip ile açıklama farklı akış gösteriyor) hangisinin geçerli olduğuna kendin karar verme. Çelişkiyi kaynaklarıyla birlikte kısaca göster ve kullanıcıya seçmeli soruyla sor. Seçenekler çelişen kaynaklar olsun, ör. "PRD'deki hali geçerli" / "Yorumdaki karar geçerli".
 
 İnceleme bittiğinde kullanıcıya kısa bir özet ver: neyi okudun, neye erişemedin, hangi çelişkileri buldun. Bu özet birkaç maddeyi geçmemeli.
 
@@ -40,7 +55,7 @@ Okuduklarından sonra iş kuralları, mevcut sistem davranışı veya bağımlı
 - **İş kararlarını kendin verme.** İlerlemeyi engelleyen bir karar varsa (ör. eski kayıtlar migrate edilecek mi, limit aşılınca ne olacak) seçenekleri kısaca sun, her birinin etkisini bir satırla belirt ve kararın kullanıcıya/ürün sahibine ait olduğunu açıkça söyle. Önerin varsa "öneri" olarak işaretle, karar gibi sunma.
 - **Kritik olmayan boşluklar analizi bekletmesin.** Kullanıcı bazı sorulara cevap veremiyorsa veya "şimdilik geç" derse, o noktaları analize "Açık soru" veya "Varsayım" olarak taşı ve devam et.
 
-Ortamda soru sorma aracı (ör. çoktan seçmeli soru aracı) varsa seçenekli kararlar için onu kullanabilirsin; açık uçlu sorular için düz metin daha uygundur.
+Soruları "Soru sorma yöntemi" bölümündeki kurallarla seçmeli olarak sor. İş kararlarında her seçenek bir alternatif olsun; açıklamasında etkisini tek cümleyle yaz.
 
 ## 3. Çıktı formatını sor
 
@@ -52,7 +67,7 @@ Analizi yazmaya başlamadan önce kullanıcıya hangi formatı istediğini sor. 
 2. **Kısa iş analizi** — amaç, kapsam, iş kuralları ve açık sorulardan oluşan yarım-bir sayfalık özet.
 3. **Kabul kriterli analiz** — iş analizine ek olarak test edilebilir kabul kriterleri (Given/When/Then veya madde listesi).
 
-Kullanıcı farklı bir şey isterse (ör. sadece kabul kriterleri, Confluence sayfası formatı) ona göre uyarla. Formatı seçtikten sonra `references/formatlar.md` dosyasından ilgili iskeleti oku.
+Formatı tek bir seçmeli soruyla sor. Bu üç formatı seçenek olarak koy ve her birinin kısa iskeletini önizlemede göster. Görevin niteliğine göre bir formatı "(Önerilen)" olarak işaretle; ör. geliştirmeye hazırlanan bir story için kabul kriterli analizi öner. Kullanıcı "Diğer" ile farklı bir şey isterse (ör. sadece kabul kriterleri, Confluence sayfası formatı) ona göre uyarla. Formatı seçtikten sonra `references/formatlar.md` dosyasından ilgili iskeleti oku.
 
 ## 4. Analizi yaz
 
@@ -79,7 +94,7 @@ Analizi doğrudan sohbet içinde sun. Kullanıcı istemedikçe Jira'ya yazma (bk
 
 ## 5. Tasklandırmayı sor
 
-Analizi sunduktan sonra kullanıcıya işi alt görevlere bölmeni isteyip istemediğini sor.
+Analizi sunduktan sonra kullanıcıya işi alt görevlere bölmeni isteyip istemediğini seçmeli bir soruyla sor. Örnek seçenekler: "Evet, alt görevlere böl" / "Hayır, analiz yeterli" / "Önce analizde düzeltme yapalım".
 
 İsterse görevleri `references/formatlar.md` içindeki "Alt Görev Şablonu"na göre hazırla. Her görevde şunlar anlaşılır olmalı:
 - **Başlık** (kısa, eylem odaklı)
@@ -89,4 +104,4 @@ Analizi sunduktan sonra kullanıcıya işi alt görevlere bölmeni isteyip istem
 
 Görevleri mantıklı bir sırada ver; paralel yürütülebilecekleri belirt. Görev bölmeyi teknik katmanlara göre değil, mümkün olduğunca test edilebilir/teslim edilebilir parçalara göre yap.
 
-**Jira'ya yazma:** Görev oluşturmak, mevcut görevin açıklamasını güncellemek, yorum eklemek veya durum değiştirmek başkalarının da gördüğü kalıcı değişikliklerdir. Bunları yalnızca kullanıcı açıkça istediğinde yap. İstediğinde de önce neyi nereye yazacağını (proje, görev tipi, parent, alanlar) kısaca teyit et; sonra işlemi yap ve oluşturulan/güncellenen görevlerin anahtarlarını ve linklerini paylaş.
+**Jira'ya yazma:** Görev oluşturmak, mevcut görevin açıklamasını güncellemek, yorum eklemek veya durum değiştirmek başkalarının da gördüğü kalıcı değişikliklerdir. Bunları yalnızca kullanıcı açıkça istediğinde yap. İstediğinde de önce neyi nereye yazacağını (proje, görev tipi, parent, alanlar) seçmeli bir soruyla teyit et. Örnek seçenekler: "Alt görevleri oluştur ve analizi açıklamaya yaz" / "Sadece alt görevleri oluştur" / "Hiçbir şey yazma"; sonra işlemi yap ve oluşturulan/güncellenen görevlerin anahtarlarını ve linklerini paylaş.

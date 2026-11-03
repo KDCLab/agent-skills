@@ -90,8 +90,8 @@ https://firma.atlassian.net/browse/PROJ-123 için kabul kriterli analiz hazırla
 ### Akış
 
 1. **İnceleme:** Görevi, yorumlarını, eklerini, bağlantılı görevlerini ve referans verilen dokümanları okur. Erişemediği kaynakları ve kaynaklar arasındaki çelişkileri sana bildirir.
-2. **Netleştirme:** Kaynaklarda cevabı olmayan soruları gruplayarak sorar. İş kararlarını kendisi vermez, seçenekleri sunar.
-3. **Format seçimi:** Jira açıklamasına uygun analiz, kısa iş analizi ya da kabul kriterli analiz arasından seçim yaparsın. Kendi şablonunu da verebilirsin.
+2. **Netleştirme:** Kaynaklarda cevabı olmayan soruları gruplayarak, mümkün olduğunda ekranda seçmeli olarak sorar. İş kararlarını kendisi vermez, seçenekleri sunar.
+3. **Format seçimi:** Ekranda seçmeli olarak sorulur: Jira açıklamasına uygun analiz, kısa iş analizi ya da kabul kriterli analiz arasından seçim yaparsın. Kendi şablonunu da verebilirsin.
 4. **Analiz:** Türkçe ve sade yazar. Kesinleşmiş bilgiyi, varsayımları ve açık soruları ayrı başlıklarda tutar.
 5. **Tasklandırma:** İstersen işi kapsam, bağımlılık ve tamamlanma kriterleriyle birlikte alt görevlere böler.
 
