@@ -1,0 +1,7 @@
+{
+  "name": "jira-analiz",
+  "version": "1.0.0",
+  "description": "Jira görevlerinden Türkçe, sade ve uygulanabilir iş analizi ve alt görev planı hazırlar.",
+  "author": { "name": "KDCLab" },
+  "repository": "https://github.com/KDCLab/agent-skills"
+}

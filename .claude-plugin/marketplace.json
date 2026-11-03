@@ -1,0 +1,15 @@
+{
+  "name": "agent-skills",
+  "owner": { "name": "KDCLab" },
+  "metadata": {
+    "description": "KDCLab ekibinin AI asistanları için paylaşılan skill koleksiyonu."
+  },
+  "plugins": [
+    {
+      "name": "jira-analiz",
+      "source": "./plugins/jira-analiz",
+      "description": "Jira görevlerinden Türkçe, sade ve uygulanabilir iş analizi ve alt görev planı hazırlar.",
+      "version": "1.0.0"
+    }
+  ]
+}
