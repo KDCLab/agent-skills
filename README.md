@@ -25,16 +25,20 @@ Marketplace'i bir kez ekle:
 İstediğin skill'i kur:
 
 ```
-/plugin install jira-analiz@agent-skills
+/plugin install jira-analiz@kdclab-skills
 ```
 
 Güncellemeleri çekmek için:
 
 ```
-/plugin marketplace update agent-skills
+/plugin marketplace update kdclab-skills
 ```
 
 Kurulu plugin'leri görmek veya kaldırmak için `/plugin` menüsünü kullan.
+
+> `/plugin` komutları VS Code eklentisinin sohbetinde çalışmaz. Terminalde `claude` CLI'ını kullan. Komutların CLI karşılıkları: `claude plugin marketplace add KDCLab/agent-skills` ve `claude plugin install jira-analiz@kdclab-skills`.
+>
+> Marketplace adı (`kdclab-skills`) repo adından (`agent-skills`) farklı, çünkü `agent-skills` adı Anthropic'in resmi marketplace'leri için ayrılmış.
 
 > Repo private ise, makinende GitHub erişiminin tanımlı olması gerekir (`git clone https://github.com/KDCLab/agent-skills.git` komutu çalışabilmeli).
 
